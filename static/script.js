@@ -19,6 +19,42 @@ navItem.forEach(item => {
         if (body.classList.contains("menu-nav-active")) {
             body.classList.remove("menu-nav-active")
             menuMobile.classList.replace("bi-x", "bi-list");
-        }
+        } 
     })
 })
+
+// Animar todos os itens na tela que tiverem meu atributo data-anime
+
+const item = document.querySelectorAll("[data-anime]");
+
+const animeScroll = () => {
+    const windowTop = window.scrollY + window.innerHeight * 0.85 ;
+
+    item.forEach(element => {
+        if (windowTop > element.scrollTop) {
+            element.classList.add("animate");
+        } else {
+            element.classList.remove("animate");
+        }
+    });
+}; 
+
+window.addEventListener("scroll", ()=>{
+    animeScroll();
+})
+
+// Ativar carregamento btn enviar
+
+const btnEnviar = document.querySelector('#btn-enviar')
+const btnEnviarLoader = document.querySelector('#btn-enviar-loader')
+
+btnEnviar.addEventListener("click", ()=>{
+    btnEnviarLoader.style.display = "block";
+    btnEnviar.style.display = "none"
+})
+
+// Tirar mensagem de alerta
+
+setTimeout(() => {
+    document.querySelector('#alert').style.display = 'none';
+}, 5000)
