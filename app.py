@@ -1,6 +1,10 @@
 from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_mail import Mail, Message
-from config import email, senha
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 
 app = Flask(__name__)
 app.secret_key = 'teste'
@@ -10,8 +14,8 @@ mail_settings = {
     "MAIL_PORT": 465,
     "MAIL_USE_TLS": False,
     "MAIL_USE_SSL": True,
-    "MAIL_USERNAME": email,
-    "MAIL_PASSWORD": senha,
+    "MAIL_USERNAME": os.getenv("EMAIL"),
+    "MAIL_PASSWORD": os.getenv("SENHA"),
 }
 
 app.config.update(mail_settings)
@@ -46,7 +50,7 @@ def send():
                 {formContato.mensagem}'''
         )
         mail.send(msg)
-        flash('Mensagem enviado com sucesso.')
+        flash('Message sucessfuly send')
     return redirect('/')
 
 
