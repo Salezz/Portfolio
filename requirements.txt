@@ -4,7 +4,6 @@ blinker==1.6.2
 certifi==2022.9.24
 chardet==5.1.0
 click==8.1.6
-cloud-init
 colorama==0.4.6
 command-not-found==0.3
 configobj==5.0.8
